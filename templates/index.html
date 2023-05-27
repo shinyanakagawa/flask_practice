@@ -1,0 +1,32 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}トップページ{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">Navbar</a>
+      <a  href="/logout" class="navbar-brand">ログアウト</a>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+</nav>
+<div class="'container">  
+    <h1>ブログアプリケーション</h1>
+    <a href="/create" role="button">新規作成ボタン</a>
+    <article>
+        {% for post in posts %}
+        <div class="card" style="width: 18rem;"></div>
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title}}</h5>
+                <p class="card-text">{{ post.body }}</p>
+                <a href="/{{ post.id}}/update" class="card-link">編集</a>
+                <a href="/{{ post.id}}/delete" class="card-link">削除</a>
+                <p class="card-text">作成日時：{{ post.created_at }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </article>
+</div>
+{% endblock %}
